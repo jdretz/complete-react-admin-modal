@@ -1,3 +1,11 @@
+## Introduction
+
+This project is part of a tutorial on how to add a modal dialog for reference resources in React Admin
+
+Simply follow the normal instructions for setting up a React Admin project (cloning this repo) to see the modal in action. The dialog can be found after clicking the **+ Create** button for a new Post. Then, click on **+ Create User** at the top of the form.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
