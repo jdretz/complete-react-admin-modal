@@ -14,6 +14,7 @@ import {
     TextInput,
     Filter,
 } from 'react-admin';
+import { UserCreateButton } from './users';
 
 const PostTitle = ({ record }) => {
     return <span>Post {record ? `"${record.title}"` : ''}</span>
@@ -53,14 +54,20 @@ export const PostEdit = props => (
     </Edit>
 );
 
-export const PostCreate = props => (
-    <Create {...props}>
-        <SimpleForm>
-            <ReferenceInput source="userId" reference="users">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput source="title" />
-            <TextInput multiline source="body" />
-        </SimpleForm>
-    </Create>
-);
+export const PostCreate = props => {
+    const [version, setVersion] = React.useState(0);
+    const handleChange = React.useCallback(() => setVersion(version + 1), [version]);
+
+    return (
+        <Create {...props}>
+            <SimpleForm>
+                <UserCreateButton onChange={handleChange} />
+                <ReferenceInput key={version} source={"id"} reference="users" >
+                    <SelectInput optionText="name" />
+                </ReferenceInput>
+                <TextInput source="title" />
+                <TextInput multiline source="body" />
+            </SimpleForm>
+        </Create>
+    )
+}
